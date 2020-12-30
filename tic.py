@@ -27,8 +27,8 @@ def iswinloss(board, me):
             return -1
     return 0
 
-def minimax(board, me, turn):
-    winloss = iswinloss(board, me)
+def minimax(board, me, turn, style):
+    winloss = style*iswinloss(board, me)
     if winloss != 0:
         return winloss/turns(board), 0
     outcomes = []
@@ -42,7 +42,7 @@ def minimax(board, me, turn):
                 full = False
                 next_board = deepcopy(board)
                 next_board[i][j] = turn
-                outcome, move = minimax(next_board, me, next_turn)
+                outcome, move = minimax(next_board, me, next_turn, style)
                 outcomes += [outcome]
                 moves += [[i,j]]
 
@@ -75,11 +75,11 @@ def print_board(board):
     print()
 
 board = [[0 for i in range(3)] for j in range(3)]
-
+style = int(input("Normal (1) or Misere (-1): "))
 turn = 1
 for i in range(9):
     if turn == 1:
-        outcome, move = minimax(board,turn,turn)
+        outcome, move = minimax(board,turn,turn,style)
     else:
         move_int = int(input("Move (0-8): "))
         move = divmod(move_int, 3)
