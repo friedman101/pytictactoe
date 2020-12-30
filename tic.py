@@ -28,8 +28,6 @@ def iswinloss(board, me):
     return 0
 
 def minimax(board, me, turn):
-    myturn = me == turn
-    next_turn = 2 if turn == 1 else 1
     winloss = iswinloss(board, me)
     if winloss != 0:
         return winloss/turns(board), 0
@@ -37,6 +35,7 @@ def minimax(board, me, turn):
     moves = []
     
     full = True
+    next_turn = 2 if turn == 1 else 1
     for i in range(len(board)):
         for j in range(len(board[i])):
             if board[i][j] == 0:
@@ -50,7 +49,7 @@ def minimax(board, me, turn):
     if full:
         return 0,0
     
-    if myturn:
+    if me == turn:
         idx = argmax(outcomes)
     else:
         idx = argmin(outcomes)
