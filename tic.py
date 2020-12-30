@@ -79,7 +79,7 @@ board = [[0 for i in range(3)] for j in range(3)]
 
 turn = 1
 for i in range(9):
-    if turn == 2:
+    if turn == 1:
         outcome, move = minimax(board,turn,turn)
     else:
         move_int = int(input("Move (0-8): "))
