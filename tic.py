@@ -75,10 +75,11 @@ def print_board(board):
     print()
 
 board = [[0 for i in range(3)] for j in range(3)]
+print_board(board)
 style = int(input("Normal (1) or Misere (-1): "))
 turn = 1
 for i in range(9):
-    if turn == 1:
+    if turn == 2:
         outcome, move = minimax(board,turn,turn,style)
     else:
         move_int = int(input("Move (0-8): "))
