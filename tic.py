@@ -62,7 +62,7 @@ def print_board(board):
         for j in range(len(board[i])):
             cell = board[i][j]
             if cell == 0:
-                print(' ',end='')
+                print(i*3+j,end='')
             elif cell == 1:
                 print('X',end='')
             else:
@@ -76,12 +76,15 @@ def print_board(board):
     print()
 
 board = [[0 for i in range(3)] for j in range(3)]
-print_board(board)
 
-me = 1
+turn = 1
 for i in range(9):
-    outcome, move = minimax(board,me,me)
-    board[move[0]][move[1]] = me
+    if turn == 2:
+        outcome, move = minimax(board,turn,turn)
+    else:
+        move_int = int(input("Move (0-8): "))
+        move = divmod(move_int, 3)
+    board[move[0]][move[1]] = turn
     print_board(board)
-    me = 2 if me == 1 else 1
+    turn = 2 if turn == 1 else 1
 
