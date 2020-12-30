@@ -83,6 +83,8 @@ for i in range(9):
     else:
         move_int = int(input("Move (0-8): "))
         move = divmod(move_int, 3)
+    if move == 0:
+        exit()
     board[move[0]][move[1]] = turn
     print_board(board)
     turn = 2 if turn == 1 else 1
